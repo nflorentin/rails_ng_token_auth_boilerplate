@@ -1,0 +1,22 @@
+angular.module('app.special_feature', [
+    'app.core',
+  ]).config [
+    '$stateProvider',
+    ($stateProvider) ->
+
+      $stateProvider
+        .state 'base.private',
+          abstract: true
+          data:
+            public: false
+          resolve:
+            onlySignedIn: ['$auth', ($auth)->
+              $auth.validateUser()
+            ]
+        .state 'base.private.private_page',
+          url: '/private_page'
+          views:
+            'content@':
+              templateUrl: "<%= asset_path 'ng_app/special_feature/special_feature.view.html' %>"
+              controller: 'specialFeatureCtrl as vm'
+  ]

@@ -1,0 +1,23 @@
+'use strict'
+
+angular.module('app.auth', [
+    'app.core'
+  ]).config [
+    '$stateProvider',
+    ($stateProvider) ->
+
+      $stateProvider
+        .state 'base.public.sign_up',
+          url: '/sign_up'
+          views:
+            'content@':
+              templateUrl: "<%= asset_path 'ng_app/auth/sign_up.view.html' %>"
+              controller : 'SignUpCtrl as vm'
+        .state 'base.public.sign_in',
+          url: '/sign_in'
+          views:
+            'content@':
+              templateUrl: "<%= asset_path 'ng_app/auth/sign_in.view.html' %>"
+              controller: 'SignInCtrl as vm'
+
+  ]

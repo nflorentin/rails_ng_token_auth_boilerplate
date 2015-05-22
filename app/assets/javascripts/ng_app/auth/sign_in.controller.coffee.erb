@@ -1,0 +1,13 @@
+angular.module('app.auth').controller 'SignInCtrl', ['$auth', '$state', ($auth, $state)->
+  vm = @
+  vm.loginForm = {}
+
+  vm.handleLoginBtnClick = (form)->
+    $auth.submitLogin(form)
+      .then (response)->
+        $state.go('base.private.private_page')
+      .catch (response)->
+        console.log(response)
+
+  return
+]

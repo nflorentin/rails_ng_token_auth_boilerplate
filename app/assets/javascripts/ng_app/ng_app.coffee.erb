@@ -1,0 +1,58 @@
+'use strict'
+
+angular.module('app', [
+  # Shared modules
+  'app.core',
+
+  # Features modules
+  'app.navbar',
+  'app.auth',
+  'app.special_feature'
+
+]).config(['$authProvider', ($authProvider)->
+  $authProvider.configure(
+    apiUrl: "<%= ng_app_url %>"
+  )
+]).run([->
+])
+
+
+angular.module('app.core', [
+    'ng-token-auth',
+    'ui.router'
+  ])
+  .controller('ApplicationController', ['$rootScope', '$scope', '$auth', '$state', ($rootScope, $scope, $auth, $state)->
+      console.log('ApplicationController loaded')
+
+      $rootScope.$on('auth:validation-success', (ev, user)->
+        console.log('after, rootScope.user:', $rootScope.user)
+      )
+
+    ])
+  .config [
+    '$stateProvider',
+    '$urlRouterProvider',
+    '$locationProvider',
+    ($stateProvider, $urlRouterProvider, $locationProvider) ->
+      $locationProvider.hashPrefix('!')
+      $urlRouterProvider.otherwise("/")
+
+      $stateProvider
+        .state 'base',
+          abstract: true
+          views:
+            'navbar@':
+              templateUrl: "<%= asset_path 'ng_app/navbar/navbar.view.html' %>"
+              controller: 'NavBarCtrl as vm'
+            '@': {}
+        .state 'base.public',
+          abstract: true
+          data:
+            public: true
+        .state 'base.public.home',
+          url: '/'
+          views:
+            'content@':
+              templateUrl: "<%= asset_path 'ng_app/shared/templates/home.html.erb' %>"
+
+  ]

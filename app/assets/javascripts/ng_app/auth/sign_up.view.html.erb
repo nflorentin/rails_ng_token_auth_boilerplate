@@ -1,0 +1,18 @@
+<form role="form">
+  <div class="form-group">
+    <label>email</label>
+    <input type="email" name="email" ng-model="vm.registrationForm.email" required="required" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label>password</label>
+    <input type="password" name="password" ng-model="vm.registrationForm.password" required="required" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label>password confirmation</label>
+    <input type="password" name="password_confirmation" ng-model="vm.registrationForm.password_confirmation" required="required" class="form-control"/>
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-lg" ng-click="vm.handleRegBtnClick(vm.registrationForm)">Register</button>
+</form>

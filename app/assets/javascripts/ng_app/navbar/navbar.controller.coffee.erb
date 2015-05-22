@@ -1,0 +1,13 @@
+'use strict'
+
+angular
+  .module('app.navbar')
+  .controller 'NavBarCtrl', ['$state', '$auth', ($state, $auth)->
+    vm = @
+
+    vm.signOut = ->
+      $auth.signOut().then (response)->
+        $state.go('base.public.home')
+
+    return
+]

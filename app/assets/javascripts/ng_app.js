@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= require angular
+//= require angular-ui-router/release/angular-ui-router
+//= require angular-cookie/angular-cookie
+//= require ng-token-auth/dist/ng-token-auth
+//= require ng_app/ng_app
+//= require_tree ./ng_app/auth
+//= require_tree ./ng_app/navbar
+//= require_tree ./ng_app/special_feature

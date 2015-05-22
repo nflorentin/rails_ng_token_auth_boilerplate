@@ -1,0 +1,13 @@
+angular.module('app.auth').controller 'SignUpCtrl', ['$auth', '$state', ($auth, $state)->
+  vm = @
+  vm.registrationForm = {}
+
+  vm.handleRegBtnClick = (form)->
+    $auth.submitRegistration(form).then (response)->
+      console.log(response)
+      $state.go('base.public.home')
+    .catch (error)->
+      console.log(error)
+
+  return
+]
