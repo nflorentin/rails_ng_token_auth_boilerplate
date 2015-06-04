@@ -13,7 +13,17 @@ angular.module('app', [
   $authProvider.configure(
     apiUrl: "<%= ng_app_url %>"
   )
-]).run([->
+
+
+
+]).run(['$rootScope', '$state', '$auth', ($rootScope, $state, $auth)->
+  $rootScope.$on("$stateChangeError", console.log.bind(console))
+
+
+  $rootScope.$on('$stateChangeStart', (event, toState, toParams, fromState, fromParams)->
+    console.log($auth.user)
+  )
+
 ])
 
 

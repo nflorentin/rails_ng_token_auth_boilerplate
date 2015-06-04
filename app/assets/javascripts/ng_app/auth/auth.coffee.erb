@@ -7,13 +7,23 @@ angular.module('app.auth', [
     ($stateProvider) ->
 
       $stateProvider
-        .state 'base.public.sign_up',
+        .state 'base.public.only_visitor',
+          abstract: true
+          resolve:
+            redirectSignedInUsers : ['$auth', '$state', ($auth, $state)->
+              $auth.validateUser().then(->
+                $state.go('base.public.home')
+              ).catch(->
+                return
+              )
+            ]
+        .state 'base.public.only_visitor.sign_up',
           url: '/sign_up'
           views:
             'content@':
               templateUrl: "<%= asset_path 'ng_app/auth/sign_up.view.html' %>"
               controller : 'SignUpCtrl as vm'
-        .state 'base.public.sign_in',
+        .state 'base.public.only_visitor.sign_in',
           url: '/sign_in'
           views:
             'content@':
