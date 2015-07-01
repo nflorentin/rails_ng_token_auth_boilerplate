@@ -16,6 +16,7 @@ angular.module('app', [
 
 
 
+
 ]).run(['$rootScope', '$state', '$auth', ($rootScope, $state, $auth)->
   $rootScope.$on("$stateChangeError", console.log.bind(console))
 

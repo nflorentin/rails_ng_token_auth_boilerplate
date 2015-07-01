@@ -1,6 +1,6 @@
 Navbar |
 <span ng-if="!user.signedIn">
-<a ui-sref="base.public.sign_up">Sign up page</a>
-<a ui-sref="base.public.sign_in">Sign in page</a>
+<a ui-sref="base.public.only_visitor.sign_up">Sign up page</a>
+<a ui-sref="base.public.only_visitor.sign_in">Sign in page</a>
 </span>
 <a href="#" ng-if="user.signedIn" ng-click="vm.signOut()">Sign out</a>
